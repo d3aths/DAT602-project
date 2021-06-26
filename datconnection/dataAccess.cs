@@ -10,6 +10,7 @@ namespace datconnection
 {
     class dataAccess
     {
+        public string Output { get; set; }
         private static string connectionString
         {
             get { return "Server=localhost;Port=3306;Database=game;Uid=root;password=nightfall;"; }
@@ -148,5 +149,33 @@ namespace datconnection
 
             return (hDataSet.Tables[0].Rows[0])["MESSAGE"].ToString();
         }
+        public string LockOut(string pUsername)
+        {
+            List<MySqlParameter> p = new List<MySqlParameter>();
+            var aP = new MySqlParameter("@UserName", MySqlDbType.VarChar, 20);
+            aP.Value = pUsername;
+            p.Add(aP);
+
+            var iDataSet = MySqlHelper.ExecuteDataset(dataAccess.mySqlConnection, "Call LockOut(@UserName)", p.ToArray());
+
+            return (iDataSet.Tables[0].Rows[0])["MESSAGE"].ToString();
+        }
+        public string CheckLogin(string pUsername, string pPassword)
+        {
+            List<MySqlParameter> p = new List<MySqlParameter>();
+            var aP = new MySqlParameter("@UserName", MySqlDbType.VarChar, 20);
+            aP.Value = pUsername;
+            p.Add(aP);
+            var bP = new MySqlParameter("@Password", MySqlDbType.VarChar, 50);
+            bP.Value = pPassword;
+            p.Add(bP);
+
+            var jDataSet = MySqlHelper.ExecuteDataset(dataAccess.mySqlConnection, "Call CheckLogin(@UserName, @Password)", p.ToArray());
+
+            Output = (jDataSet.Tables[0].Rows[0])["MESSAGE"].ToString();
+
+            return (jDataSet.Tables[0].Rows[0])["MESSAGE"].ToString();
+        }
+
     }   
 }

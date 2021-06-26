@@ -36,8 +36,8 @@ namespace datconnection
             this.passInput = new System.Windows.Forms.TextBox();
             this.newuserBtn = new System.Windows.Forms.Button();
             this.loginBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // title
@@ -125,35 +125,36 @@ namespace datconnection
             this.loginBtn.TabIndex = 7;
             this.loginBtn.Text = "Login Existing";
             this.loginBtn.UseVisualStyleBackColor = false;
+            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             this.loginBtn.MouseEnter += new System.EventHandler(this.loginBtn_MouseEnter);
             this.loginBtn.MouseLeave += new System.EventHandler(this.loginBtn_MouseLeave);
             // 
-            // textBox1
+            // button2
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 438);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 8;
+            this.button2.Location = new System.Drawing.Point(689, 150);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 58);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "bypass login";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // textBox2
             // 
-            this.button1.Location = new System.Drawing.Point(228, 437);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 46);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "find user test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.textBox2.Location = new System.Drawing.Point(689, 285);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(180, 22);
+            this.textBox2.TabIndex = 11;
             // 
             // UserInput
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(963, 538);
+            this.ClientSize = new System.Drawing.Size(963, 457);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.newuserBtn);
             this.Controls.Add(this.passInput);
@@ -180,5 +181,7 @@ namespace datconnection
         private System.Windows.Forms.Button loginBtn;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
