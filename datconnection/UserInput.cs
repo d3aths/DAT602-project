@@ -19,6 +19,7 @@ namespace datconnection
 
         public Player player;
         private GameWindow gamewindow = new GameWindow();
+        private CharManagement charselect = new CharManagement();
 
         public UserInput()
         {
@@ -86,6 +87,7 @@ namespace datconnection
             //if it finds a matching username record then pull data into the new player matchinguser
             if (dReader.Read())
             {
+                matchingUser.ID = Int32.Parse(dReader["userid"].ToString());
                 matchingUser.Username = dReader["username"].ToString();
                 matchingUser.Password = dReader["password"].ToString();
                 matchingUser.Email = dReader["email"].ToString();
@@ -93,8 +95,8 @@ namespace datconnection
                 matchingUser.Locked = dReader["locked"].ToString();
                 matchingUser.Attempts = dReader["attempts"].ToString();
                 matchingUser.Status = dReader["status"].ToString();
-                matchingUser.X = (int)dReader["x"]; //doesnt want to pull in these ints for some ass reason
-                matchingUser.Y = Convert.ToInt32(dReader["y"]);
+                matchingUser.X = dReader["x"].ToString();
+                matchingUser.Y = dReader["y"].ToString();
 
             }
             //closes the connection
@@ -126,6 +128,7 @@ namespace datconnection
             {
                 //if username is accepted then carry on with adding new user
                 DataAccess.addCheckedUser(username, password);
+                Player.PlayerList.Add(player);
                 //confirms creation with popup
                 MessageBox.Show("User created, you may now login.");         
                 //clears the fields
@@ -160,19 +163,25 @@ namespace datconnection
                 {
                     Player y = PullData(username);
                     Player.CurrentPlayer = player;
-                    newplayer.Username = player.Username;
-                    newplayer.Password = player.Password;
-                    y.Email = player.Email;
-                    y.Admin = player.Admin;
-                    y.Locked = player.Locked;
-                    y.Attempts = player.Attempts;
-                    y.Status = player.Status;
-                    y.X = player.X;
-                    y.Y = player.Y;
+                    player.ID = y.ID;
+                    player.Username = y.Username;
+                    player.Password = y.Password;
+                    player.Email = y.Email;
+                    player.Admin = y.Admin ;
+                    player.Locked = y.Locked;
+                    player.Attempts = y.Attempts;
+                    player.Status = "Online";
+                    player.X = y.X;
+                    player.Y = y.Y;
+
+                    usernameInput.Clear();
+                    passInput.Clear();
+                    //then hides this window to move onto the next
+                    charselect.Owner = this;
+                    charselect.Show();
+                    this.Hide();
                 }
-            }
-            
-            
+            }  
         }
 
         private void newuserBtn_MouseEnter(object sender, EventArgs e)

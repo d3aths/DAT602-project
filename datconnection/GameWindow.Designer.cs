@@ -118,10 +118,10 @@ namespace datconnection
             // userLabel
             // 
             this.userLabel.Font = new System.Drawing.Font("ROG Fonts", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userLabel.ForeColor = System.Drawing.Color.White;
-            this.userLabel.Location = new System.Drawing.Point(666, 26);
+            this.userLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.userLabel.Location = new System.Drawing.Point(628, 26);
             this.userLabel.Name = "userLabel";
-            this.userLabel.Size = new System.Drawing.Size(135, 56);
+            this.userLabel.Size = new System.Drawing.Size(221, 56);
             this.userLabel.TabIndex = 1;
             this.userLabel.Text = "Player Name";
             this.userLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -133,9 +133,9 @@ namespace datconnection
             this.atkBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.atkBtn.Font = new System.Drawing.Font("ROG Fonts", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.atkBtn.ForeColor = System.Drawing.Color.White;
-            this.atkBtn.Location = new System.Drawing.Point(626, 103);
+            this.atkBtn.Location = new System.Drawing.Point(628, 103);
             this.atkBtn.Name = "atkBtn";
-            this.atkBtn.Size = new System.Drawing.Size(95, 40);
+            this.atkBtn.Size = new System.Drawing.Size(103, 40);
             this.atkBtn.TabIndex = 2;
             this.atkBtn.Text = "Attack";
             this.atkBtn.UseVisualStyleBackColor = false;
@@ -147,7 +147,7 @@ namespace datconnection
             this.invBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.invBtn.Font = new System.Drawing.Font("ROG Fonts", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.invBtn.ForeColor = System.Drawing.Color.White;
-            this.invBtn.Location = new System.Drawing.Point(738, 103);
+            this.invBtn.Location = new System.Drawing.Point(750, 103);
             this.invBtn.Name = "invBtn";
             this.invBtn.Size = new System.Drawing.Size(99, 40);
             this.invBtn.TabIndex = 3;
@@ -186,7 +186,7 @@ namespace datconnection
             this.southBtn.FlatAppearance.BorderSize = 0;
             this.southBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.southBtn.Image = ((System.Drawing.Image)(resources.GetObject("southBtn.Image")));
-            this.southBtn.Location = new System.Drawing.Point(706, 270);
+            this.southBtn.Location = new System.Drawing.Point(706, 272);
             this.southBtn.Name = "southBtn";
             this.southBtn.Size = new System.Drawing.Size(42, 34);
             this.southBtn.TabIndex = 6;
@@ -199,9 +199,9 @@ namespace datconnection
             this.eastBtn.FlatAppearance.BorderSize = 0;
             this.eastBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eastBtn.Image = ((System.Drawing.Image)(resources.GetObject("eastBtn.Image")));
-            this.eastBtn.Location = new System.Drawing.Point(747, 226);
+            this.eastBtn.Location = new System.Drawing.Point(750, 231);
             this.eastBtn.Name = "eastBtn";
-            this.eastBtn.Size = new System.Drawing.Size(35, 46);
+            this.eastBtn.Size = new System.Drawing.Size(35, 37);
             this.eastBtn.TabIndex = 7;
             this.eastBtn.UseVisualStyleBackColor = true;
             this.eastBtn.Click += new System.EventHandler(this.eastBtn_Click);
@@ -364,10 +364,11 @@ namespace datconnection
             this.textBox1.BackColor = System.Drawing.Color.DarkGray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(75, 521);
+            this.textBox1.Location = new System.Drawing.Point(86, 521);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(531, 21);
+            this.textBox1.Size = new System.Drawing.Size(520, 21);
             this.textBox1.TabIndex = 22;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // sayLabel
             // 
@@ -641,7 +642,8 @@ namespace datconnection
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(849, 579);
+            this.ClientSize = new System.Drawing.Size(882, 579);
+            this.Controls.Add(this.southBtn);
             this.Controls.Add(this.box64);
             this.Controls.Add(this.box63);
             this.Controls.Add(this.box62);
@@ -684,7 +686,6 @@ namespace datconnection
             this.Controls.Add(this.wLabel);
             this.Controls.Add(this.nLabel);
             this.Controls.Add(this.eastBtn);
-            this.Controls.Add(this.southBtn);
             this.Controls.Add(this.westBtn);
             this.Controls.Add(this.northBtn);
             this.Controls.Add(this.invBtn);
@@ -693,6 +694,7 @@ namespace datconnection
             this.Controls.Add(this.gameBG);
             this.Name = "GameWindow";
             this.Text = "GameWindow";
+            this.Load += new System.EventHandler(this.GameWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.box11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.box12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.box13)).EndInit();

@@ -75,48 +75,50 @@ namespace datconnection
             // 
             // usernameText
             // 
+            this.usernameText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameText.Location = new System.Drawing.Point(280, 99);
-            this.usernameText.Multiline = true;
             this.usernameText.Name = "usernameText";
-            this.usernameText.Size = new System.Drawing.Size(214, 36);
+            this.usernameText.Size = new System.Drawing.Size(214, 28);
             this.usernameText.TabIndex = 2;
             // 
             // passwordText
             // 
+            this.passwordText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordText.Location = new System.Drawing.Point(280, 153);
-            this.passwordText.Multiline = true;
             this.passwordText.Name = "passwordText";
-            this.passwordText.Size = new System.Drawing.Size(214, 35);
+            this.passwordText.Size = new System.Drawing.Size(214, 28);
             this.passwordText.TabIndex = 3;
             // 
             // emailText
             // 
+            this.emailText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailText.Location = new System.Drawing.Point(280, 212);
-            this.emailText.Multiline = true;
             this.emailText.Name = "emailText";
-            this.emailText.Size = new System.Drawing.Size(214, 35);
+            this.emailText.Size = new System.Drawing.Size(214, 28);
             this.emailText.TabIndex = 4;
             // 
             // statusText
             // 
+            this.statusText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusText.Location = new System.Drawing.Point(280, 270);
-            this.statusText.Multiline = true;
             this.statusText.Name = "statusText";
-            this.statusText.Size = new System.Drawing.Size(214, 36);
+            this.statusText.Size = new System.Drawing.Size(214, 28);
             this.statusText.TabIndex = 5;
             // 
             // xText
             // 
-            this.xText.Location = new System.Drawing.Point(280, 329);
+            this.xText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xText.Location = new System.Drawing.Point(280, 323);
             this.xText.Name = "xText";
-            this.xText.Size = new System.Drawing.Size(100, 22);
+            this.xText.Size = new System.Drawing.Size(100, 28);
             this.xText.TabIndex = 6;
             // 
             // yText
             // 
+            this.yText.Font = new System.Drawing.Font("Fira Code", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yText.Location = new System.Drawing.Point(280, 357);
             this.yText.Name = "yText";
-            this.yText.Size = new System.Drawing.Size(100, 22);
+            this.yText.Size = new System.Drawing.Size(100, 28);
             this.yText.TabIndex = 7;
             // 
             // adminCheck
@@ -239,6 +241,7 @@ namespace datconnection
             this.saveBtn.TabIndex = 18;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = false;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // cancelBtn
             // 
@@ -252,6 +255,7 @@ namespace datconnection
             this.cancelBtn.TabIndex = 19;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // EditAcc
             // 
@@ -281,6 +285,7 @@ namespace datconnection
             this.Controls.Add(this.bgLabel);
             this.Name = "EditAcc";
             this.Text = "Edit Account";
+            this.Shown += new System.EventHandler(this.EditAcc_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
