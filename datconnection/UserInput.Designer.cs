@@ -130,9 +130,11 @@ namespace datconnection
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(76, 361);
+            this.textBox2.Location = new System.Drawing.Point(76, 347);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(180, 22);
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(194, 42);
             this.textBox2.TabIndex = 11;
             // 
             // UserInput

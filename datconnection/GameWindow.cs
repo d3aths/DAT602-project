@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +23,57 @@ namespace datconnection
         private PictureBox wTile;
         int coordx;
         int coordy;
-        //this is stupid and doesnt work
+        private PictureBox lastTile;
+        string status = "status";
 
         public GameWindow()
         {
             InitializeComponent();
+        }
+        private static string connectionString
+        {
+            get { return "Server=localhost;Port=3306;Database=game;Uid=root;password=nightfall;"; }
+
+        }
+
+        private static MySqlConnection _conn = null;
+        public static MySqlConnection conn
+        {
+            get
+            {
+                if (_conn == null)
+                {
+                    _conn = new MySqlConnection(connectionString);
+                }
+                return _conn;
+            }
+        }
+        public Player GetStats(int userid)
+        {
+            //creates a new player object called matchinguser
+            Player matchingUser = new Player();
+            //finding a matching coloumn in account where username matches @user
+            string sql = "Select * from stats where userid=@userid";
+            //new mysql command featuring the statement above and the db connection
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            //adds the parameter and its values
+            cmd.Parameters.AddWithValue("@userid", Player.CurrentPlayer.ID);
+            //open connection
+            conn.Open();
+            //creates the datareader and excecutes the command
+            MySqlDataReader dReader = cmd.ExecuteReader();
+            //if it finds a matching username record then put it into the new player matchinguser
+            if (dReader.Read())
+            {
+                matchingUser.ID = Int32.Parse(dReader["userid"].ToString());
+                matchingUser.Str = Int32.Parse(dReader["str"].ToString());
+                matchingUser.Hp = Int32.Parse(dReader["hp"].ToString());
+                matchingUser.Stam = Int32.Parse(dReader["stam"].ToString());
+            }
+            //closes the connection
+            conn.Close();
+
+            return matchingUser;
         }
 
         void checkPos()
@@ -263,8 +310,13 @@ namespace datconnection
             currentTile = sTile;
             //outputs to chatbox
             chatBox.Text = "Location: " + currentTile.Name;
+            //checks once more for updated coords for db writing
+            checkPos();
             //calls move to write coords in db
             DataAccess.Move(Player.CurrentPlayer.ID, coordx, coordy);
+            //adds a new last known tile after the db write so it can load next time
+            lastTile = currentTile;
+            Player.CurrentPlayer.LastLoc = lastTile.Name;
         }
 
         private void eastBtn_Click(object sender, EventArgs e)
@@ -279,8 +331,13 @@ namespace datconnection
             currentTile = eTile;
             //outputs to chatbox
             chatBox.Text = "Location: " + currentTile.Name;
+            //checks once more for updated coords for db writing
+            checkPos();
             //calls move to write coords in db
             DataAccess.Move(Player.CurrentPlayer.ID, coordx, coordy);
+            //adds a new last known tile after the db write so it can load next time
+            lastTile = currentTile;
+            Player.CurrentPlayer.LastLoc = lastTile.Name;
         }
 
         private void westBtn_Click(object sender, EventArgs e)
@@ -295,8 +352,13 @@ namespace datconnection
             currentTile = wTile;
             //outputs to chatbox
             chatBox.Text = "Location: " + currentTile.Name;
+            //checks once more for updated coords for db writing
+            checkPos();
             //calls move to write coords in db
             DataAccess.Move(Player.CurrentPlayer.ID, coordx, coordy);
+            //adds a new last known tile after the db write so it can load next time
+            lastTile = currentTile;
+            Player.CurrentPlayer.LastLoc = lastTile.Name;
         }
 
         private void northBtn_Click(object sender, EventArgs e)
@@ -311,14 +373,41 @@ namespace datconnection
             currentTile = nTile;
             //outputs to chatbox
             chatBox.Text = "Location: " + currentTile.Name;
+            //checks once more for updated coords for db writing
+            checkPos();
             //calls move to write coords in db
             DataAccess.Move(Player.CurrentPlayer.ID, coordx, coordy);
+            //adds a new last known tile after the db write so it can load next time
+            lastTile = currentTile;
+            Player.CurrentPlayer.LastLoc = lastTile.Name;
         }
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
             userLabel.Text = Player.CurrentPlayer.Username;
-            currentTile = box11;
+            //checks if the user has been moving here before ie they have a stored last tile
+            if (Player.CurrentPlayer.LastLoc == null)
+            {
+                currentTile = box11;
+            }
+            else
+            {
+                //doesnt save position unless you dont stop game window rip
+                currentTile = lastTile;
+            }
+            //gets stats in stat table associated with current player id
+            Player x = GetStats(Player.CurrentPlayer.ID);
+            //if current id matches pulled id
+            if (x.ID == Player.CurrentPlayer.ID)
+            {   //pulls stats from x into current player
+                Player.CurrentPlayer.Str = x.Str;
+                Player.CurrentPlayer.Hp = x.Hp;
+                Player.CurrentPlayer.Stam = x.Stam;
+                strText.Text = Player.CurrentPlayer.Str.ToString();
+                hpText.Text = Player.CurrentPlayer.Hp.ToString();
+                stamText.Text = Player.CurrentPlayer.Stam.ToString();
+            }
+            else { }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -331,6 +420,14 @@ namespace datconnection
                 chatBox.Text = chat.ToString();
                 textBox1.Clear();
             }
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Player.CurrentPlayer.Status = "Offline";
+            DataAccess.EditAcc(Player.CurrentPlayer.ID, status, Player.CurrentPlayer.Status);
+            this.Owner.Show();
+            this.Hide();
         }
     }
 }

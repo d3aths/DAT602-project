@@ -94,6 +94,12 @@
     <Compile Include="CharManagement.Designer.cs">
       <DependentUpon>CharManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassPick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassPick.Designer.cs">
+      <DependentUpon>ClassPick.cs</DependentUpon>
+    </Compile>
     <Compile Include="dataAccess.cs" />
     <Compile Include="EditAcc.cs">
       <SubType>Form</SubType>
@@ -144,6 +150,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CharManagement.resx">
       <DependentUpon>CharManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassPick.resx">
+      <DependentUpon>ClassPick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditAcc.resx">
       <DependentUpon>EditAcc.cs</DependentUpon>

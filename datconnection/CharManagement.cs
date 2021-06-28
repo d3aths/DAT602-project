@@ -16,6 +16,9 @@ namespace datconnection
         private EditAcc editpage = new EditAcc();
         private GameWindow opengame = new GameWindow();
         public Player player;
+        dataAccess DataAccess = new dataAccess();
+        string status = "status";
+        private ClassPick classpicker = new ClassPick();
         public CharManagement()
         {
             InitializeComponent();
@@ -90,6 +93,7 @@ namespace datconnection
         {
             playernameLabel.Text = Player.CurrentPlayer.Username;
             UpdateDisplay();
+            AdminCheck();
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
@@ -110,21 +114,55 @@ namespace datconnection
                 var slctdPlayer = (Player)playerList.SelectedItem;
                 player = slctdPlayer;
                 editpage.ShowDialog(slctdPlayer);
+                AdminCheck();
             }
             else if (playBtn.Checked == true)
             {
-                opengame.Show();
-                this.Hide();
+                //if the str is less than 20 they havent picked a build
+                if (Player.CurrentPlayer.Str < 20)
+                {
+                    var slctdPlayer = (Player)playerList.SelectedItem;
+                    player = slctdPlayer;
+                    classpicker.ShowDialog(slctdPlayer);
+                }
+                //slightly cheesing it, if str is over 20 then theyve picked a build
+                else if (Player.CurrentPlayer.Str >= 20)
+                {
+                    Player.CurrentPlayer.Status = "Online";
+                    DataAccess.EditAcc(Player.CurrentPlayer.ID, status, Player.CurrentPlayer.Status);
+                    opengame.Owner = this;
+                    opengame.Show();
+                    this.Hide();
+                }
             }
             else if (deleteBtn.Checked == true)
             {
                 var slctdPlayer = (Player)playerList.SelectedItem;
                 Player.PlayerList.Remove(slctdPlayer);
+                DataAccess.DelAcc(Player.CurrentPlayer.ID);
             }
             else if (killBtn.Checked == true)
             {
                 var slctdPlayer = (Player)playerList.SelectedItem;
                 slctdPlayer.Status = "Offline";
+            }
+        }
+        //checks if the user has admin accessibility to show extra controls
+        private void AdminCheck()
+        {
+            if (Player.CurrentPlayer.Admin == "N")
+            {
+                deleteBtn.Enabled = false;
+                killBtn.Enabled = false;
+                deleteBtn.Visible = false;
+                killBtn.Visible = false;
+            }
+            else if (Player.CurrentPlayer.Admin == "Y")
+            {
+                deleteBtn.Enabled = true;
+                killBtn.Enabled = true;
+                deleteBtn.Visible = true;
+                killBtn.Visible = true;
             }
         }
     }

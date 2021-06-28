@@ -36,3 +36,4 @@ C:\Users\venom\Documents\GitHub\year 2\datconnection\datconnection\obj\Debug\dat
 C:\Users\venom\Documents\GitHub\year 2\datconnection\datconnection\obj\Debug\datconnection.CharManagement.resources
 C:\Users\venom\Documents\GitHub\year 2\datconnection\datconnection\obj\Debug\datconnection.EditAcc.resources
 C:\Users\venom\Documents\GitHub\year 2\datconnection\datconnection\obj\Debug\datconnection.GameWindow.resources
+C:\Users\venom\Documents\GitHub\year 2\datconnection\datconnection\obj\Debug\datconnection.ClassPick.resources

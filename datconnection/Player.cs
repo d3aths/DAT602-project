@@ -19,6 +19,9 @@ namespace datconnection
         private string status;
         private string x;
         private string y;
+        private int str;
+        private int hp;
+        private int stam;
 
         //a list to store all new player objects that get created as new users
         private static List<Player> _playerList = new List<Player>();
@@ -42,6 +45,11 @@ namespace datconnection
         public string Status { get { return status; } set { status = value; } }
         public string X { get { return x; } set { x = value; } }
         public string Y { get { return y; } set { y = value; } }
+        public string LastLoc { get; set; }
+
+        public int Str { get { return str; } set { str = value; } }
+        public int Hp { get { return hp; } set { hp = value; } }
+        public int Stam { get { return stam; } set { stam = value; } }
 
         public Player()
         {

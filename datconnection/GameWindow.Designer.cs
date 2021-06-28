@@ -43,10 +43,10 @@ namespace datconnection
             this.sLabel = new System.Windows.Forms.Label();
             this.eLabel = new System.Windows.Forms.Label();
             this.statsLabel = new System.Windows.Forms.Label();
-            this.atkLabel = new System.Windows.Forms.Label();
+            this.strLabel = new System.Windows.Forms.Label();
             this.hpLabel = new System.Windows.Forms.Label();
             this.stamLabel = new System.Windows.Forms.Label();
-            this.atkText = new System.Windows.Forms.Label();
+            this.strText = new System.Windows.Forms.Label();
             this.hpText = new System.Windows.Forms.Label();
             this.stamText = new System.Windows.Forms.Label();
             this.coinsText = new System.Windows.Forms.Label();
@@ -80,6 +80,7 @@ namespace datconnection
             this.box62 = new System.Windows.Forms.PictureBox();
             this.box61 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logoutBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.box11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.box12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.box13)).BeginInit();
@@ -119,7 +120,7 @@ namespace datconnection
             // 
             this.userLabel.Font = new System.Drawing.Font("ROG Fonts", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.userLabel.Location = new System.Drawing.Point(628, 26);
+            this.userLabel.Location = new System.Drawing.Point(612, 28);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(221, 56);
             this.userLabel.TabIndex = 1;
@@ -261,16 +262,16 @@ namespace datconnection
             this.statsLabel.TabIndex = 12;
             this.statsLabel.Text = "Stats";
             // 
-            // atkLabel
+            // strLabel
             // 
-            this.atkLabel.AutoSize = true;
-            this.atkLabel.Font = new System.Drawing.Font("ROG Fonts", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atkLabel.ForeColor = System.Drawing.Color.White;
-            this.atkLabel.Location = new System.Drawing.Point(652, 414);
-            this.atkLabel.Name = "atkLabel";
-            this.atkLabel.Size = new System.Drawing.Size(48, 18);
-            this.atkLabel.TabIndex = 13;
-            this.atkLabel.Text = "ATK";
+            this.strLabel.AutoSize = true;
+            this.strLabel.Font = new System.Drawing.Font("ROG Fonts", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.strLabel.ForeColor = System.Drawing.Color.White;
+            this.strLabel.Location = new System.Drawing.Point(652, 414);
+            this.strLabel.Name = "strLabel";
+            this.strLabel.Size = new System.Drawing.Size(49, 18);
+            this.strLabel.TabIndex = 13;
+            this.strLabel.Text = "STR";
             // 
             // hpLabel
             // 
@@ -294,16 +295,16 @@ namespace datconnection
             this.stamLabel.TabIndex = 15;
             this.stamLabel.Text = "STAM";
             // 
-            // atkText
+            // strText
             // 
-            this.atkText.AutoSize = true;
-            this.atkText.Font = new System.Drawing.Font("ROG Fonts", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atkText.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.atkText.Location = new System.Drawing.Point(748, 413);
-            this.atkText.Name = "atkText";
-            this.atkText.Size = new System.Drawing.Size(32, 20);
-            this.atkText.TabIndex = 16;
-            this.atkText.Text = "10";
+            this.strText.AutoSize = true;
+            this.strText.Font = new System.Drawing.Font("ROG Fonts", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.strText.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.strText.Location = new System.Drawing.Point(748, 413);
+            this.strText.Name = "strText";
+            this.strText.Size = new System.Drawing.Size(32, 20);
+            this.strText.TabIndex = 16;
+            this.strText.Text = "10";
             // 
             // hpText
             // 
@@ -637,12 +638,26 @@ namespace datconnection
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // logoutBtn
+            // 
+            this.logoutBtn.BackColor = System.Drawing.Color.Black;
+            this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.Image = ((System.Drawing.Image)(resources.GetObject("logoutBtn.Image")));
+            this.logoutBtn.Location = new System.Drawing.Point(848, 16);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Size = new System.Drawing.Size(61, 57);
+            this.logoutBtn.TabIndex = 49;
+            this.logoutBtn.UseVisualStyleBackColor = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(882, 579);
+            this.ClientSize = new System.Drawing.Size(932, 579);
+            this.Controls.Add(this.logoutBtn);
             this.Controls.Add(this.southBtn);
             this.Controls.Add(this.box64);
             this.Controls.Add(this.box63);
@@ -676,10 +691,10 @@ namespace datconnection
             this.Controls.Add(this.coinsText);
             this.Controls.Add(this.stamText);
             this.Controls.Add(this.hpText);
-            this.Controls.Add(this.atkText);
+            this.Controls.Add(this.strText);
             this.Controls.Add(this.stamLabel);
             this.Controls.Add(this.hpLabel);
-            this.Controls.Add(this.atkLabel);
+            this.Controls.Add(this.strLabel);
             this.Controls.Add(this.statsLabel);
             this.Controls.Add(this.eLabel);
             this.Controls.Add(this.sLabel);
@@ -740,10 +755,10 @@ namespace datconnection
         private System.Windows.Forms.Label sLabel;
         private System.Windows.Forms.Label eLabel;
         private System.Windows.Forms.Label statsLabel;
-        private System.Windows.Forms.Label atkLabel;
+        private System.Windows.Forms.Label strLabel;
         private System.Windows.Forms.Label hpLabel;
         private System.Windows.Forms.Label stamLabel;
-        private System.Windows.Forms.Label atkText;
+        private System.Windows.Forms.Label strText;
         private System.Windows.Forms.Label hpText;
         private System.Windows.Forms.Label stamText;
         private System.Windows.Forms.Label coinsText;
@@ -777,5 +792,6 @@ namespace datconnection
         private System.Windows.Forms.PictureBox box62;
         private System.Windows.Forms.PictureBox box61;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button logoutBtn;
     }
 }
